@@ -2,7 +2,7 @@
 
 To integrate this Serenity BDD test suite into a CI/CD pipeline, the process involves several key steps that ensure automation, reliability, and actionable feedback.
 
-- First, to configure the pipeline to trigger automatically on code changes (application uder test), such as commits or pull requests, to catch issues early.
+- First, to configure the pipeline to trigger automatically on code changes (application under test), such as commits or pull requests, to catch issues early.
 
 - Next, set up the environment by installing the required dependencies, like Java and Gradle, and ensure the target browser’s WebDriver (e.g., ChromeDriver) is available, either pre-installed or dynamically provisioned.
 
@@ -15,20 +15,19 @@ To integrate this Serenity BDD test suite into a CI/CD pipeline, the process inv
 
 ### What would be your approach to scaling this framework for a large application?
 
-Scaling the Serenity BDD framework with the Screenplay pattern for a large application involves enhancing maintainability,
-performance, and coverage. Here’s my approach:
+Scaling the Serenity BDD framework with the Screenplay pattern for a large application involves enhancing maintainability, performance, and coverage. Here’s my approach:
 
 #### Modularize the Framework
 
 - Task and Question Libraries: Expand the existing tasks and questions packages (e.g., Login, Navigate) into domain-specific modules (e.g., user_management, billing, transfers, etc). This keeps the codebase organized as features grow.
 
-- Page Objects: While Screenplay minimizes reliance on traditional page objects, introduce reusable UI interaction classes (e.g., components) for common elements like navigation bars or forms.
+- Page Objects: While Screenplay minimizes reliance on traditional page objects, introduce reusable UI interaction classes (e.g., components, enter, clic, select) for common elements like navigation bars or forms.
 
 #### Enhance Configuration
 
-- Multiple Environments: Extend serenity.conf to support multiple environments (e.g., dev, staging, prod) with base URLs and credentials as variables (e.g., webdriver.base.url).
+- Multiple Environments: Extend `serenity.conf` to support multiple environments (e.g., dev, staging, prod) with base URLs and credentials as variables (e.g., webdriver.base.url).
 
-- Browser Support: Add configurations for additional browsers (e.g., Firefox, Safari) as shown in the serenity.conf file, enabling cross-browser testing.
+- Browser Support: Add configurations for additional browsers (e.g., Firefox, Safari, Opera) as shown in the `serenity.conf` file, enabling cross-browser testing.
 
 #### Optimize Execution
 
@@ -48,7 +47,7 @@ cucumber.execution.parallel.config.fixed.max-pool-size=4
 
 #### Scalability Testing
 
-- API Integration: Incorporate REST-assured or similar libraries to test APIs alongside UI tests, covering backend scalability.
+- API Integration: Incorporate `REST-assured or similar libraries to test APIs alongside UI tests, covering backend scalability.
 
 - Load Testing: Use Serenity as a base for functional tests, then integrate with tools like K for performance testing.
 
@@ -86,7 +85,7 @@ As a QA Leader overseeing this project, I’d focus on metrics that reflect test
 
 #### Reporting
 
-- Serenity Reports: Leverage the built-in reports (target/site/serenity) for detailed step-by-step results, screenshots, and failure analysis.
+- Serenity Reports: Leverage the built-in reports `(target/site/serenity)` for detailed step-by-step results, screenshots, and failure analysis.
 
 - Dashboard: Aggregate metrics in a tool like Grafana or Jenkins dashboards, pulling data from CI pipelines and Serenity JSON outputs (serenity-summary.json).
 
