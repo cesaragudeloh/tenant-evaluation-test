@@ -86,6 +86,7 @@ Adiccionally, results and evidence generated during test execution are located i
 ```
 $(Repository.Name)/OnlineStore/target/site/serenity
 ```
+![image](docs/images/serenity_bdd_report.png)
 
 ## Logging, screenshot and reports configuration
 
