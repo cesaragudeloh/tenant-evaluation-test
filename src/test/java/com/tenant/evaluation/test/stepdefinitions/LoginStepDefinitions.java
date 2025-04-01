@@ -1,15 +1,19 @@
 package com.tenant.evaluation.test.stepdefinitions;
 
+import com.tenant.evaluation.test.tasks.Navigate;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.screenplay.Actor;
 
 public class LoginStepDefinitions {
 
-    @Given("Laura is on the sample app login page")
-    public void userIsOnTheLoginPage() {
-        System.out.println("GIVEN");
+    @Given("{actor} is on the sample app login page")
+    public void userIsOnTheLoginPage(Actor actor) {
+        actor.wasAbleTo(
+                Navigate.toHomePage()
+        );
     }
 
     @When("She enters {string} as the username and {string} as the password")
@@ -30,7 +34,7 @@ public class LoginStepDefinitions {
 
     @Given("She is logged in as {string} with password {string}")
     public void userIsLoggedInAsWithPassword(String username, String password) {
-        System.out.println("GIVEN: "+ username + " " + password);
+        System.out.println("GIVEN: " + username + " " + password);
     }
 
     @When("She clicks the Log Out button")
