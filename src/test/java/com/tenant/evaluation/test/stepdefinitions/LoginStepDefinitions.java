@@ -1,11 +1,20 @@
 package com.tenant.evaluation.test.stepdefinitions;
 
+import com.tenant.evaluation.test.questions.GetText;
+import com.tenant.evaluation.test.tasks.Login;
 import com.tenant.evaluation.test.tasks.Navigate;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actors.OnStage;
+
+import static com.tenant.evaluation.test.userinterface.LoginPage.LOGOUT_BUTTON;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static org.hamcrest.Matchers.*;
+
+import static com.tenant.evaluation.test.userinterface.LoginPage.LOGIN_STATUS_MESSAGE;
 
 public class LoginStepDefinitions {
 
@@ -16,30 +25,27 @@ public class LoginStepDefinitions {
         );
     }
 
-    @When("She enters {string} as the username and {string} as the password")
-    public void userEntersAsTheUsernameAndAsThePassword(String username, String password) {
-        System.out.println("WHEN: " + username + " " + password);
+    @When("{actor} logs in with {string} as the username and {string} as the password")
+    public void userEntersAsTheUsernameAndAsThePassword(Actor actor, String username, String password) {
+        actor.attemptsTo(
+                Login.withCredentials(username, password)
+        );
     }
 
-    @And("She clicks the Log In button")
-    public void userClicksTheLogInButton() {
-        System.out.println("AND");
-    }
 
-    @Then("She should see the message {string}")
+    @Then("should see the message {string}")
     public void userShouldSeeTheMessage(String string) {
-        System.out.println("THEN");
+        OnStage.theActorInTheSpotlight().should(
+                seeThat("the login status message", GetText.fromTarget(LOGIN_STATUS_MESSAGE), equalTo(string))
+        );
     }
 
 
-    @Given("She is logged in as {string} with password {string}")
-    public void userIsLoggedInAsWithPassword(String username, String password) {
-        System.out.println("GIVEN: " + username + " " + password);
-    }
-
-    @When("She clicks the Log Out button")
-    public void userClicksTheLogOutButton() {
-        System.out.println("WHEN");
+    @When("{actor} clicks the Log Out button")
+    public void userClicksTheLogOutButton(Actor actor) {
+        actor.attemptsTo(
+                Click.on(LOGOUT_BUTTON)
+        );
     }
 
 }
